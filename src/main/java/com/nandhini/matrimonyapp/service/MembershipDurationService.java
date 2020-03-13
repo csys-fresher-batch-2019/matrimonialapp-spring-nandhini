@@ -12,7 +12,7 @@ import com.nandhini.matrimonyapp.factory.DAOFactory;
 public class MembershipDurationService {
 	MembershipDurationDAO dao = DAOFactory.getMembershipDurationDAO();
 
-	public List<MembershipDuration> getMembershipDetails() throws DBException, ServiceException {
+	public List<MembershipDuration> findByMembershipDuration() throws DBException, ServiceException {
 		try {
 			return dao.findByMembershipDuration();
 		} catch (DBException e) {
@@ -36,7 +36,7 @@ public class MembershipDurationService {
 		}
 	}
 
-	public List<MembershipDuration> getRemainingDays(int userId) throws DBException, ServiceException {
+	public List<MembershipDuration> findByRemainingDays(int userId) throws DBException, ServiceException {
 		try {
 			return dao.findByRemainingDays(userId);
 		} catch (DBException e) {

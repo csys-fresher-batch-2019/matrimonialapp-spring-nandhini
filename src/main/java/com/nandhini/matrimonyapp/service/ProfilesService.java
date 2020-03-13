@@ -12,7 +12,7 @@ import com.nandhini.matrimonyapp.factory.DAOFactory;
 public class ProfilesService {
 	ProfilesInterfaceDAO dao = DAOFactory.getProfilesInterfaceDAO();
 
-	public List<Profiles> getProfile(String userName) throws DBException, ServiceException {
+	public List<Profiles> findByProfile(String userName) throws DBException, ServiceException {
 		try {
 			return dao.findByProfile(userName);
 		} catch (DBException e) {
@@ -20,7 +20,7 @@ public class ProfilesService {
 		}
 	}
 
-	public String changePassword(String userEmail, String pass, String userpassword)
+	public String updatePassword(String userEmail, String pass, String userpassword)
 			throws DBException, ServiceException {
 		try {
 			return dao.updatePassword(userEmail, pass, userpassword);
@@ -29,7 +29,7 @@ public class ProfilesService {
 		}
 	}
 
-	public List<Profiles> getGenderProfile(String gender) throws DBException, ServiceException {
+	public List<Profiles> findByGender(String gender) throws DBException, ServiceException {
 		try {
 			return dao.findByGender(gender);
 		} catch (DBException e) {
@@ -37,7 +37,7 @@ public class ProfilesService {
 		}
 	}
 
-	public List<Profiles> getHeight(double height, String gender) throws DBException, ServiceException {
+	public List<Profiles> findByHeight(double height, String gender) throws DBException, ServiceException {
 		try {
 			return dao.findByHeight(height, gender);
 		} catch (DBException e) {
@@ -45,7 +45,7 @@ public class ProfilesService {
 		}
 	}
 
-	public List<Profiles> getSalaryDetails(int salary, String gender) throws DBException, ServiceException {
+	public List<Profiles> findBySalary(int salary, String gender) throws DBException, ServiceException {
 		try {
 			return dao.findBySalary(salary, gender);
 		} catch (DBException e) {
@@ -61,7 +61,7 @@ public class ProfilesService {
 		}
 	}
 
-	public List<Profiles> getNotInOccupation(String gender, String occupation) throws DBException, ServiceException {
+	public List<Profiles> findByNotInOccupation(String gender, String occupation) throws DBException, ServiceException {
 		try {
 			return dao.findByNotInOccupation(gender, occupation);
 		} catch (DBException e) {
@@ -69,9 +69,9 @@ public class ProfilesService {
 		}
 	}
 
-	public List<Profiles> getCityProfile(String gender, String city) throws DBException, ServiceException {
+	public List<Profiles> findByCity(String gender, String city) throws DBException, ServiceException {
 		try {
-			return dao.findByNotInOccupation(gender, city);
+			return dao.findByCity(gender, city);
 		} catch (DBException e) {
 			throw new ServiceException(ServiceConstant.INVALID_FIND);
 		}
@@ -110,7 +110,7 @@ public class ProfilesService {
 		}
 	}
 
-	public List<Profiles> getReligion(String gender, String religion) throws DBException, ServiceException {
+	public List<Profiles> findByReligion(String gender, String religion) throws DBException, ServiceException {
 		try {
 			return dao.findByReligion(gender, religion);
 		} catch (DBException e) {
@@ -118,7 +118,7 @@ public class ProfilesService {
 		}
 	}
 
-	public List<Profiles> getFullProfile() throws DBException, ServiceException {
+	public List<Profiles> findByFullProfile() throws DBException, ServiceException {
 		try {
 			return dao.findByFullProfile();
 		} catch (DBException e) {

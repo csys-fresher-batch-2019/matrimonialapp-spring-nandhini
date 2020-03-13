@@ -12,7 +12,7 @@ import com.nandhini.matrimonyapp.factory.DAOFactory;
 public class RequestStatusService {
 	RequestStatusDAO dao = DAOFactory.getRequestStatusDAO();
 
-	public void insertRequest(RequestStatus r) throws DBException, ServiceException {
+	public void saveRequest(RequestStatus r) throws DBException, ServiceException {
 		try {
 			dao.saveRequest(r);
 		} catch (DBException e) {
@@ -20,7 +20,7 @@ public class RequestStatusService {
 		}
 	}
 
-	public List<RequestStatus> getRequestorList(String requestor) throws DBException, ServiceException {
+	public List<RequestStatus> findByRequestorList(String requestor) throws DBException, ServiceException {
 		try {
 			return dao.findByRequestorList(requestor);
 		} catch (DBException e) {
@@ -28,7 +28,7 @@ public class RequestStatusService {
 		}
 	}
 
-	public List<RequestStatus> getAcceptorList(String acceptor) throws DBException, ServiceException {
+	public List<RequestStatus> findByAcceptorList(String acceptor) throws DBException, ServiceException {
 		try {
 			return dao.findByAcceptorList(acceptor);
 		} catch (DBException e) {

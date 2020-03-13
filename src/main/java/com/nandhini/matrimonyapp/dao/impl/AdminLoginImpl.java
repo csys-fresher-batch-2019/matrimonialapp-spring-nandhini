@@ -25,7 +25,7 @@ public class AdminLoginImpl implements AdminLoginDAO {
 			ps.setString(2, al.getPassword());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				String userName1 = rs.getString("user_name");
+			String userName1 = rs.getString("user_name");
 				String password1 = rs.getString("password");
 				if (al.getUserName().equals(userName1) && password1.equals(al.getPassword()))
 					Logger.debug("Logged In...");

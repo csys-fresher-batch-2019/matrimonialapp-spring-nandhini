@@ -13,7 +13,7 @@ public class MembershipPlanService {
 
 	MembershipPlanInterfaceDAO dao = DAOFactory.getMembershipPlanInterfaceDAO();
 
-	public List<MembershipPlan> getMembershipPlanDetails() throws DBException, ServiceException {
+	public List<MembershipPlan> findByMembershipPlan() throws DBException, ServiceException {
 		try {
 			return dao.findByMembershipPlan();
 		} catch (DBException e) {
@@ -29,7 +29,7 @@ public class MembershipPlanService {
 		}
 	}
 
-	public List<MembershipPlan> getExpiryDateDetails() throws DBException, ServiceException {
+	public List<MembershipPlan> findByExpiryDate() throws DBException, ServiceException {
 		try {
 			return dao.findByExpiryDate();
 		} catch (DBException e) {

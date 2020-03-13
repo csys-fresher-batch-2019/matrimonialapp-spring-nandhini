@@ -32,26 +32,9 @@ public class RequestStatusImpl implements RequestStatusDAO {
 		}
 	}
 
-	/*
-	 * public List<RequestStatus> getRequestStatus(RequestStatus r) throws
-	 * DBException{ List<RequestStatus> list=new ArrayList<RequestStatus>(); String
-	 * sql = "select * from request where requestor=? and status=?"; try (Connection
-	 * con = ConnectionUtil.getConnect(); PreparedStatement ps =
-	 * con.prepareStatement(sql); ResultSet rs = ps.executeQuery(sql)) {
-	 * ps.setString(1,r.getRequestor() ); ps.setString(2, r.getStatus()); while
-	 * (rs.next()) { String acc = rs.getString("acceptor"); String req =
-	 * rs.getString("requestor"); r.setAcceptor(acc); r.setRequestor(ps);
-	 * list.add(r); }
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); throw new
-	 * DBException(ErrorConstant.INVALID_SELECT);
-	 * 
-	 * } return list; }
-	 */
-
 	public List<RequestStatus> findByRequestorList(String requestor) throws DBException {
 		List<RequestStatus> list = new ArrayList<RequestStatus>();
-		String sql = "select * from request where requestor=?";
+		String sql = "select acceptor,status from request where requestor=?";
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, requestor);
 			ResultSet rs = ps.executeQuery();
@@ -74,7 +57,7 @@ public class RequestStatusImpl implements RequestStatusDAO {
 
 	public List<RequestStatus> findByAcceptorList(String acceptor) throws DBException {
 		List<RequestStatus> list = new ArrayList<RequestStatus>();
-		String sql = "select * from request where acceptor=?";
+		String sql = "select requestor,status from request where acceptor=?";
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, acceptor);
 			ResultSet rs = ps.executeQuery();

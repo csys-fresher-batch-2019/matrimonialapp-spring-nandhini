@@ -74,4 +74,11 @@ public class MembershipDuration {
 		UserId = userId;
 	}
 
+	@Override
+	public String toString() {
+		return "MembershipDuration [memberId=" + memberId + ", mdUserId=" + mdUserId + ", mdPlanId=" + mdPlanId
+				+ ", expiryDate=" + expiryDate + ", monthValidity=" + monthValidity + ", remainingDays=" + remainingDays
+				+ ", userName=" + userName + ", UserId=" + UserId + "]";
+	}
+
 }

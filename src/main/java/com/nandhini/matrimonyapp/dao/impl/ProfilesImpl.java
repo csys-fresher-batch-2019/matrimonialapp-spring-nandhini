@@ -1,4 +1,4 @@
-package com.nandhini.matrimonyapp.dao.impl;
+ package com.nandhini.matrimonyapp.dao.impl;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -22,13 +22,13 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 	public List<Profiles> findByProfile(String userName) throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
 		int active = 1;
-		String sql = "select * from profiles where lower(user_name)=lower(?) and active=" + active;
+		String sql = "select user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,pic from profiles where lower(user_name)=lower(?) and active=" + active;
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, userName);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String userName1 = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender = rs.getString("gender");
 				String religion = rs.getString("religion");
 				String caste = rs.getString("caste");
@@ -91,13 +91,13 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 	public List<Profiles> findByGender(String gender) throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
 		int active = 1;
-		String sql = "select * from profiles where gender=? and active=" + active;
+		String sql = "select user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,pic from profiles where gender=? and active=" + active;
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, gender);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String user_name = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender1 = rs.getString("gender");
 				String religion = rs.getString("religion");
 				String country = rs.getString("country");
@@ -144,14 +144,14 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 	public List<Profiles> findByCity(String gender, String city) throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
 		int active = 1;
-		String sql = "select * from profiles where gender=? and lower(city)=lower(?) and active=" + active;
+		String sql = "select user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,pic from profiles where gender=? and lower(city)=lower(?) and active=" + active;
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, gender);
 			ps.setString(2, city);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String user_name = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender1 = rs.getString("gender");
 				String religion = rs.getString("religion");
 				String caste = rs.getString("caste");
@@ -198,14 +198,14 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 	public List<Profiles> findByHeight(double height, String gender) throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
 		int active = 1;
-		String sql = "select * from profiles where height >=? and gender=? and active=" + active;
+		String sql = "select user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,pic from profiles where height >=? and gender=? and active=" + active;
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setDouble(1, height);
 			ps.setString(2, gender);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String user_name = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender1 = rs.getString("gender");
 				String religion = rs.getString("religion");
 				String country = rs.getString("country");
@@ -251,14 +251,14 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 	public List<Profiles> findBySalary(int salary, String gender) throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
 		int active = 1;
-		String sql = "select * from profiles where salary>=? and gender=? and active=" + active;
+		String sql = "select user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,pic from profiles where salary>=? and gender=? and active=" + active;
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setInt(1, salary);
 			ps.setString(2, gender);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String user_name = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender1 = rs.getString("gender");
 				String religion = rs.getString("religion");
 				String country = rs.getString("country");
@@ -306,14 +306,14 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 	public List<Profiles> findByOccupation(String gender, String occupation) throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
 		int active = 1;
-		String sql = "select * from profiles where gender=? and lower(occupation) =lower(?) and active=" + active;
+		String sql = "select user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,pic from profiles where gender=? and lower(occupation) =lower(?) and active=" + active;
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, gender);
 			ps.setString(2, occupation);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String user_name = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender1 = rs.getString("gender");
 				String religion = rs.getString("religion");
 				String caste = rs.getString("caste");
@@ -360,14 +360,14 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 	public List<Profiles> findByNotInOccupation(String gender, String occupation) throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
 		int active = 1;
-		String sql = "select * from profiles where gender=? and lower(occupation) not in lower(?) and active=" + active;
+		String sql = "select user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,pic from profiles where gender=? and lower(occupation) not in lower(?) and active=" + active;
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, gender);
 			ps.setString(2, occupation);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String userName = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender1 = rs.getString("gender");
 				String religion = rs.getString("religion");
 				String caste = rs.getString("caste");
@@ -493,14 +493,14 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 	public List<Profiles> findByReligion(String gender, String religion) throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
 		int active = 1;
-		String sql = "select * from profiles where gender=? and lower(religion)=lower(?) and active=" + active;
+		String sql = "select user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,pic from profiles where gender=? and lower(religion)=lower(?) and active=" + active;
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, gender);
 			ps.setString(2, religion);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String user_name = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender1 = rs.getString("gender");
 				String religion1 = rs.getString("religion");
 				String country = rs.getString("country");
@@ -546,13 +546,13 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 
 	public List<Profiles> findByFullProfile() throws DBException {
 		List<Profiles> list = new ArrayList<Profiles>();
-		String sql = "select * from profiles";
+		String sql = "select user_id,user_name,d_o_b,gender,religion,caste,country,states,city,mob_no,aadhar_no,mail_id,height,education,occupation,salary,marital_sts,membership_type,pass,active,pic from profiles";
 		try (Connection con = ConnectionUtil.getConnect(); PreparedStatement ps = con.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int userId = rs.getInt("user_id");
 				String user_name = rs.getString("user_name");
-				LocalDate dob = LocalDate.parse(rs.getString("d_o_b"));
+				LocalDate dob = rs.getDate("d_o_b").toLocalDate();
 				String gender1 = rs.getString("gender");
 				String religion1 = rs.getString("religion");
 				String caste = rs.getString("caste");
@@ -564,7 +564,7 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 				String mail = rs.getString("mail_id");
 				int height = rs.getInt("height");
 				String education = rs.getString("education");
-				LocalDateTime registerdDate = rs.getTimestamp("registerdDate").toLocalDateTime();
+				//LocalDateTime registerdDate = rs.getTimestamp("registerdDate").toLocalDateTime();
 				String occupation = rs.getString("occupation");
 				int salary = rs.getInt("salary");
 				String marital_sts = rs.getString("marital_sts");
@@ -572,6 +572,7 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 				String pass = rs.getString("pass");
 				int active = rs.getInt("active");
 				String pic = rs.getString("pic");
+				
 				Profiles p = new Profiles();
 				p.setUserId(userId);
 				p.setUserName(user_name);
@@ -587,7 +588,7 @@ public class ProfilesImpl implements ProfilesInterfaceDAO {
 				p.setMail(mail);
 				p.setHeight(height);
 				p.setEducation(education);
-				p.setRegisterdDate(registerdDate);
+				//p.setRegisterdDate(registerdDate);
 				p.setOccupation(occupation);
 				p.setSalary(salary);
 				p.setMaritalSts(marital_sts);

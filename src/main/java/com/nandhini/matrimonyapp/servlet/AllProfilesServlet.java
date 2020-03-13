@@ -19,10 +19,8 @@ import com.nandhini.matrimonyapp.factory.DAOFactory;
 
 @Service
 @WebServlet("/AllProfilesServlet")
-
 public class AllProfilesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
@@ -33,11 +31,9 @@ public class AllProfilesServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		out.print("<center><h3>User Profiles</h3></center>");
 		out.print(
 				"<table border=5 align=center><tr><th>User Id</th><th>Name</th><th>Picture</th><th>DOB</th><th>Gender</th><th>Religion</th><th>Caste</th><th>Country</th><th>State</th><th>City</th><th>Mob.No</th><th>Aadhar.No</th><th>Height</th><th>Education</th><th>Occupation</th><th>Marital status</th><th>Salary</th><th>Registerd Date</th><th>Membership Type</th><th>Active</th></tr>");
-
 		for (Profiles pi : d) {
 			out.print("<tr><td>" + pi.getUserId() + "</td><td>" + pi.getUserName() + "</td><td><img src=images/"
 					+ pi.getPic() + " height='100' width='100'> </td><td>" + pi.getDob() + "</td><td>" + pi.getGender()
@@ -49,9 +45,6 @@ public class AllProfilesServlet extends HttpServlet {
 					+ pi.getActive() + "</td></tr>");
 			out.print("<br>");
 		}
-
 		out.print("</table>");
-
 	}
-
 }

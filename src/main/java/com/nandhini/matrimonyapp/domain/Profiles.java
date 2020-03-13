@@ -20,7 +20,6 @@ public class Profiles {
 	private double height;
 	private String education;
 	private LocalDateTime registerdDate= LocalDateTime.now();
-	//private LocalDate registerdDate;
 	private String maritalSts;
 	private String occupation;
 	private int salary;

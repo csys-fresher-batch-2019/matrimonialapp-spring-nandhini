@@ -18,7 +18,7 @@ public class MembershipPlanImpl implements MembershipPlanInterfaceDAO {
 
 	public List<MembershipPlan> findByMembershipPlan() throws DBException {
 		List<MembershipPlan> list = new ArrayList<MembershipPlan>();
-		String sql = "select * from plan";
+		String sql = "select plan_id,membership_type,total_months,amount from plan";
 		try (Connection con = ConnectionUtil.getConnect();
 				PreparedStatement ps = con.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery(sql)) {

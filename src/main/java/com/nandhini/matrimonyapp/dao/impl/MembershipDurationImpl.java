@@ -18,7 +18,7 @@ public class MembershipDurationImpl implements MembershipDurationDAO {
 
 	public List<MembershipDuration> findByMembershipDuration() throws DBException {
 		List<MembershipDuration> list = new ArrayList<MembershipDuration>();
-		String sql = "select * from membership_duration";
+		String sql = "select member_id,md_user_id,md_plan_id,expiry_date from membership_duration";
 		try (Connection con = ConnectionUtil.getConnect();
 				PreparedStatement ps = con.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery()) {

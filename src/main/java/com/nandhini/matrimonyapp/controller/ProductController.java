@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.nandhini.matrimonyapp.dao.AdminLoginDAO;
 import com.nandhini.matrimonyapp.dao.ProfilesInterfaceDAO;
+import com.nandhini.matrimonyapp.domain.AdminLogin;
 import com.nandhini.matrimonyapp.domain.Profiles;
 import com.nandhini.matrimonyapp.dto.MessageDTO;
+import com.nandhini.matrimonyapp.exception.DBException;
 import com.nandhini.matrimonyapp.factory.DAOFactory;
 
 @RestController
@@ -64,5 +68,21 @@ public class ProductController {
 		List<Profiles> l = new ArrayList<Profiles>();
 		l = pi.findByProfile(userName);
 		return l;
+	}
+
+	@GetMapping("/adminlogin")
+	public MessageDTO adminLogin(@RequestParam("userName") String userName, @RequestParam("pass") String pass) throws DBException {
+		MessageDTO msg = new MessageDTO();
+		AdminLogin a = new AdminLogin();
+		a.setUserName(userName);
+		a.setPassword(pass);
+		AdminLoginDAO dao = DAOFactory.getAdminLoginDAO();
+		String rst=dao.adminLogin(a);
+		if (rst == "success") {
+			msg.setInfoMessage("Login Success");
+		} else {
+			msg.setInfoMessage("Login Failed");
+		}
+		return msg;
 	}
 }
